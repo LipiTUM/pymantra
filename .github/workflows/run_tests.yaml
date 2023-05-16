@@ -40,7 +40,7 @@ jobs:
           pip install Cython
           pip install .[dev]
           python setup.py build_ext --inplace
-          mv .env.template .env
+          cp .env.template .env
 
       - name: Run unit tests
         if: ${{ matrix.python-minor-version != 10 }}
