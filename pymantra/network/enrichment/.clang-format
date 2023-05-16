@@ -1,0 +1,28 @@
+# Adapted from the numpy repository https://github.com/numpy/numpy/blob/main/.clang-format
+#
+BasedOnStyle: Google
+AlignAfterOpenBracket: Align
+AllowShortEnumsOnASingleLine: true
+AllowShortIfStatementsOnASingleLine: true
+AlwaysBreakAfterReturnType: TopLevel
+BreakBeforeBraces: Stroustrup
+ColumnLimit: 79
+ContinuationIndentWidth: 4
+DerivePointerAlignment: false
+IndentWidth: 4
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex:           '^[<"](Python|structmember|pymem)\.h'
+    Priority:        -3
+    CaseSensitive:   true
+  - Regex:           '^"[[:alnum:]_.]+"'
+    Priority:        1
+  - Regex:           '^<[[:alnum:]_.]+"'
+    Priority:        2
+Language: Cpp
+PointerAlignment: Right
+ReflowComments: true
+SpaceBeforeParens: ControlStatements
+SpacesInParentheses: true
+TabWidth: 4
+UseTab: Always

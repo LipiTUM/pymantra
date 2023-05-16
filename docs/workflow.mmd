@@ -1,0 +1,48 @@
+%%{init: {"theme": "neutral"}}%%
+flowchart TD
+
+
+subgraph in[Required Input]
+    met(Metabolome Data)
+end
+
+subgraph opt[Optional Multi-Omics Data]
+    direction LR
+    subgraph opti[Input]
+        direction LR
+        org(Organism/Microbiome Data)
+        cat(Genome/Transcriptome Data)
+    end
+    subgraph optc[Associations]
+        associ[compute_multiomics_associations]
+    end
+end
+
+subgraph db["Databases (online and/or offline)"]
+    neo4j[(neo4j Graph)]
+    sql[(SQL ID maps)]
+end
+
+namemap[NameMapper<br><i>Metabolite ID Mapping</i>]
+netgen[NetworkGenerator]
+metnet(((Metabolic Network)))
+
+
+estimates[Reaction Estimates]
+lso[Local Search Enrichment]
+res[Enrichment Results]
+reac[ ]
+
+sql -.-> namemap
+met --> namemap --> netgen
+neo4j -.-> netgen
+
+opti --> netgen --> metnet
+
+metnet & opti & estimates --> optc
+metnet & met --- reac --> estimates
+
+
+estimates & optc --> lso --> res
+
+style reac width:0px,height:0px

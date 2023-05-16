@@ -1,0 +1,11 @@
+include pymantra/data/example_graph.graphml
+include pymantra/data/metabolite_data.csv
+include pymantra/data/microbiome_data.csv
+include pymantra/data/sample_groups.csv
+include pymantra/boost_available.cpp
+include pymantra/boost_version.cpp
+include pymantra/namemapping/databases/ChEBI/chebi.db
+include pymantra/namemapping/databases/HMDB/hmdb.db
+include pymantra/namemapping/databases/mantra_db/mantra.db
+include pymantra/namemapping/databases/Reactome/reactome.db
+include README.md LICENSE

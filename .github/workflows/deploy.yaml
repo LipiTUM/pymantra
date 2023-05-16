@@ -1,0 +1,109 @@
+# this workflow is partially adapted from the cibuildwheel repository
+# https://github.com/pypa/cibuildwheel/blob/main/examples/github-deploy.yml
+# TODO: consult https://github.com/scipy/scipy/blob/48c59f71d998ea04a6b80ace07647f309734d77a/.github/workflows/wheels.yml
+#       for additional insights/options
+name: Deployment
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build_wheels:
+    name: Wheel building for ${{ matrix.python-version }}-${{ matrix.os[1] }}
+    runs-on: ${{ matrix.os[0] }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        # python-version: [ "3.8", "3.9", "3.10", "3.11" ]
+        python-version: [ "3.8", "3.10" ]
+
+        os:
+          - [ubuntu-20.04, manylinux_x86_64]
+          - [ubuntu-20.04, manylinux_i686]
+          - [macos-11, macosx_*]
+          - [windows-2019, win_amd64]
+            # - [windows-2019, win32]
+
+    steps:
+      - name: Install openmp
+        if: startsWith(matrix.os[1], 'macosx')
+        run: |
+          brew install llvm
+          brew install libomp
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Build wheel
+        uses: pypa/cibuildwheel@v2.11.4
+        env:
+          CIBW_BUILD: ${{ matrix.python-version }}-${{ matrix.os[1] }}
+          CIBW_ARCHS_MACOS: x86_64 arm64
+          MACOSX_DEPLOYMENT_TARGET: "10.14"
+
+      - name: Wheelhouse
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.python-version }}-${{ startsWith(matrix.os[1], 'macosx') && 'macosx' || matrix.os[1] }}
+          path: ./wheelhouse/*.whl
+
+  build_sdist:
+    name: Build source distribution
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v4
+        with:
+          # TODO: which is best? currently lowest "supported"
+          python-version: "3.8"
+
+      - name: Fetch database files
+        run: |
+          pip install gdown
+          gdown --folder https://drive.google.com/drive/folders/1sWTHWRqzglWOjTMwNa_aqkKT__Y7Snmq?usp=sharing
+          mv package/chebi.db pymantra/namemapping/ChEBI/
+          mv package/hmdb.db pymantra/namemapping/HMDB/
+          mv package/mantra.db pymantra/namemapping/mantra_db/
+          mv package/reactome.db pymantra/namemapping/Reactome/
+
+      - name: Build sdist
+        run: |
+          pip install --upgrade wheel setuptools
+          python setup.py sdist
+          python setup.py bdist_wheel
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: dist/*.tar.gz
+
+  upload_pypi:
+    needs: [build_wheels, build_sdist]
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/pymantra
+    permissions:
+      id-token: write
+    # TODO: add back in once verified this works
+    # if: github.event_name == 'release' && github.event.action == 'created'
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          # unpacks default artifact into dist/
+          # if `name: artifact` is omitted, the action will create extra parent dir
+          name: artifact
+          path: dist
+
+      - uses: pypa/gh-action-pypi-publish@v1.5.0
+        with:
+          verbose: true

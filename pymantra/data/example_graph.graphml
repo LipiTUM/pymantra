@@ -1,0 +1,337 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d1" for="edge" attr.name="edge_type" attr.type="string" />
+  <key id="d0" for="node" attr.name="node_type" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="nadph">
+      <data key="d0">metabolite</data>
+    </node>
+    <node id="g6p">
+      <data key="d0">metabolite</data>
+    </node>
+    <node id="Plasmodium falciparum 3D7">
+      <data key="d0">organism</data>
+    </node>
+    <node id="Candidatus Pantoea">
+      <data key="d0">organism</data>
+    </node>
+    <node id="Acidipropionibacterium virtanenii">
+      <data key="d0">organism</data>
+    </node>
+    <node id="2539">
+      <data key="d0">gene</data>
+    </node>
+    <node id="nad">
+      <data key="d0">metabolite</data>
+    </node>
+    <node id="nadp">
+      <data key="d0">metabolite</data>
+    </node>
+    <node id="25796">
+      <data key="d0">gene</data>
+    </node>
+    <node id="coF420">
+      <data key="d0">metabolite</data>
+    </node>
+    <node id="G6PDH2">
+      <data key="d0">reaction</data>
+    </node>
+    <node id="G6PDH2c">
+      <data key="d0">reaction</data>
+    </node>
+    <node id="G6PDH2rer">
+      <data key="d0">reaction</data>
+    </node>
+    <node id="9563">
+      <data key="d0">gene</data>
+    </node>
+    <node id="Azoarcus sp.">
+      <data key="d0">organism</data>
+    </node>
+    <node id="PGLer">
+      <data key="d0">reaction</data>
+    </node>
+    <node id="R10520">
+      <data key="d0">reaction</data>
+    </node>
+    <node id="Microbacterium wangchenii">
+      <data key="d0">organism</data>
+    </node>
+    <node id="PGL">
+      <data key="d0">reaction</data>
+    </node>
+    <node id="6pgl">
+      <data key="d0">metabolite</data>
+    </node>
+    <node id="R09550">
+      <data key="d0">reaction</data>
+    </node>
+    <node id="G6PDH1rer">
+      <data key="d0">reaction</data>
+    </node>
+    <node id="G6PBDH">
+      <data key="d0">reaction</data>
+    </node>
+    <node id="R02035">
+      <data key="d0">reaction</data>
+    </node>
+    <node id="Pseudolysobacter antarcticus">
+      <data key="d0">organism</data>
+    </node>
+    <node id="Intestinibaculum porci">
+      <data key="d0">organism</data>
+    </node>
+    <node id="coF420h">
+      <data key="d0">metabolite</data>
+    </node>
+    <node id="Pseudomonas viridiflava">
+      <data key="d0">organism</data>
+    </node>
+    <node id="h2o">
+      <data key="d0">metabolite</data>
+    </node>
+    <node id="h">
+      <data key="d0">metabolite</data>
+    </node>
+    <node id="G6PDH2r">
+      <data key="d0">reaction</data>
+    </node>
+    <node id="6pgc">
+      <data key="d0">metabolite</data>
+    </node>
+    <node id="PGLc">
+      <data key="d0">reaction</data>
+    </node>
+    <node id="Acidothermus cellulolyticus">
+      <data key="d0">organism</data>
+    </node>
+    <node id="R10907">
+      <data key="d0">reaction</data>
+    </node>
+    <node id="Permianibacter aggregans">
+      <data key="d0">organism</data>
+    </node>
+    <edge source="g6p" target="G6PDH2">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="g6p" target="G6PDH2c">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="g6p" target="R10520">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="g6p" target="R09550">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="g6p" target="G6PDH2rer">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="g6p" target="G6PDH1rer">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="g6p" target="G6PDH2r">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="nad" target="R10907">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="nad" target="G6PDH1rer">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="nad" target="R10520">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="nadp" target="G6PDH2rer">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="nadp" target="G6PBDH">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="nadp" target="G6PDH2r">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="nadp" target="G6PDH2c">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="nadp" target="G6PDH2">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="coF420" target="R09550">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="G6PDH2" target="nadph">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="G6PDH2" target="6pgl">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="G6PDH2" target="h">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="G6PDH2c" target="6pgl">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="G6PDH2c" target="2539">
+      <data key="d1">REACTION_GENE</data>
+    </edge>
+    <edge source="G6PDH2c" target="h">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="G6PDH2c" target="nadph">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="G6PDH2rer" target="6pgl">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="G6PDH2rer" target="2539">
+      <data key="d1">REACTION_GENE</data>
+    </edge>
+    <edge source="G6PDH2rer" target="h">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="G6PDH2rer" target="9563">
+      <data key="d1">REACTION_GENE</data>
+    </edge>
+    <edge source="G6PDH2rer" target="nadph">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="PGLer" target="h">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="PGLer" target="6pgc">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="PGLer" target="9563">
+      <data key="d1">REACTION_GENE</data>
+    </edge>
+    <edge source="R10520" target="6pgl">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="R10520" target="2539">
+      <data key="d1">REACTION_GENE</data>
+    </edge>
+    <edge source="R10520" target="h">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="PGL" target="h">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="PGL" target="6pgc">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="6pgl" target="PGLer">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="6pgl" target="PGL">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="6pgl" target="R02035">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="6pgl" target="PGLc">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="R09550" target="6pgl">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="R09550" target="coF420h">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="G6PDH1rer" target="6pgl">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="G6PDH1rer" target="h">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="G6PDH1rer" target="9563">
+      <data key="d1">REACTION_GENE</data>
+    </edge>
+    <edge source="G6PBDH" target="nadph">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="G6PBDH" target="6pgl">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="G6PBDH" target="h">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="R02035" target="Intestinibaculum porci">
+      <data key="d1">REACTION_ORGANISM</data>
+    </edge>
+    <edge source="R02035" target="Pseudolysobacter antarcticus">
+      <data key="d1">REACTION_ORGANISM</data>
+    </edge>
+    <edge source="R02035" target="Pseudomonas viridiflava">
+      <data key="d1">REACTION_ORGANISM</data>
+    </edge>
+    <edge source="R02035" target="Acidothermus cellulolyticus">
+      <data key="d1">REACTION_ORGANISM</data>
+    </edge>
+    <edge source="R02035" target="Permianibacter aggregans">
+      <data key="d1">REACTION_ORGANISM</data>
+    </edge>
+    <edge source="R02035" target="6pgc">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="R02035" target="25796">
+      <data key="d1">REACTION_GENE</data>
+    </edge>
+    <edge source="R02035" target="Acidipropionibacterium virtanenii">
+      <data key="d1">REACTION_ORGANISM</data>
+    </edge>
+    <edge source="R02035" target="9563">
+      <data key="d1">REACTION_GENE</data>
+    </edge>
+    <edge source="R02035" target="Plasmodium falciparum 3D7">
+      <data key="d1">REACTION_ORGANISM</data>
+    </edge>
+    <edge source="R02035" target="Candidatus Pantoea">
+      <data key="d1">REACTION_ORGANISM</data>
+    </edge>
+    <edge source="R02035" target="Azoarcus sp.">
+      <data key="d1">REACTION_ORGANISM</data>
+    </edge>
+    <edge source="R02035" target="Microbacterium wangchenii">
+      <data key="d1">REACTION_ORGANISM</data>
+    </edge>
+    <edge source="h2o" target="PGLer">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="h2o" target="PGL">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="h2o" target="R02035">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="h2o" target="PGLc">
+      <data key="d1">SUBSTRATE</data>
+    </edge>
+    <edge source="G6PDH2r" target="6pgl">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="G6PDH2r" target="h">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="G6PDH2r" target="nadph">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="PGLc" target="h">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="PGLc" target="6pgc">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="PGLc" target="25796">
+      <data key="d1">REACTION_GENE</data>
+    </edge>
+    <edge source="R10907" target="2539">
+      <data key="d1">REACTION_GENE</data>
+    </edge>
+    <edge source="R10907" target="6pgl">
+      <data key="d1">PRODUCT</data>
+    </edge>
+    <edge source="R10907" target="h">
+      <data key="d1">PRODUCT</data>
+    </edge>
+  </graph>
+</graphml>

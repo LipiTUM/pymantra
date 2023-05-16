@@ -1,0 +1,90 @@
+[build-system]
+requires = [
+    "setuptools", "wheel", "Cython", "numpy>1.20.0"
+]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "pymantra"
+version = "0.0.0beta1"
+license = {text = "AGPLv3"}
+description = "Reaction-Centred Metabolic Network Analysis"
+readme = "README.md"
+authors = [
+    {name="Nikolai Koehler", email="nikolai.koehler@tum.de"},
+    {name="Josch Konstantin Pauling"}
+]
+maintainers = [
+    {name="Nikolai Koehler", email="nikolai.koehler@tum.de"},
+    {name="Josch Konstantin Pauling"}
+]
+keywords = [
+	"Bioinformatics", "Computational Metabolomics", "Metabolic Network"
+]
+classifiers = [
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3"
+]
+dependencies = [
+	# pandas <= 1.4.2 contains a bug that prevents from debugging
+	# in certain cases
+    "pandas>=1.4.3",
+    "scipy>=1.8.0",
+    "scikit-learn>=1.0.2",
+    "networkx>=2.8.0",
+    "tqdm>=4.62.1",
+    "matplotlib>=3.3.0",
+    "seaborn>=0.9.0",
+    "neo4j>=4.4.0",
+    "pingouin>=0.5.2",
+    "statsmodels>=0.13.5",
+    # these are dependencies of pingouin that seems to not install
+    # automatically
+    "pandas-flavor",
+    "seaborn",
+    "outdated"
+]
+
+[project.optional-dependencies]
+experiments = ["scikit-bio", "openpyxl", "scikit-optimize"]
+dev = ["pytest", "pytest-cov", "flake8", "coverage"]
+docs = [
+    "Sphinx", "furo", "sphinxcontrib-bibtex", "sphinx-copybutton",
+    "sphinxcontrib-mermaid>=0.8.1"
+]
+
+
+[project.urls]
+# TODO: adapt
+Source = "https://www.github.com/lipitum/pymantra"
+Documentation = "https://pymantra.readthedocs.io"
+Publication = "https://www.lipitum.de"
+
+
+[tool.flake8]
+max-line-length = 80
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+
+[tool.coverage.run]
+source = ["pymantra"]
+data_file = "coverage/coverage.report"
+omit = [
+    "*/__init__.py",
+    "pymantra/network/exceptions.py",
+    "pymantra/network/io_estimation.py"
+]
+
+[tool.coverage.html]
+show_contexts = true
+directory = "coverage/html"

@@ -1,0 +1,58 @@
+# jetbrains
+*.idea/
+
+# compiled files
+__pycache__/
+*.py[cod]
+
+# C++ extensions
+*.so
+*cmake-build-debug/
+*cython_debug/
+*htslib/
+
+# cython generated files
+pymantra/network/enrichment/RFA/rfa.cpp
+pymantra/network/enrichment/LSO/lso.cpp
+pymantra/network/enrichment/spearman.cpp
+
+# tables to manually generate neo4j DB
+pymantra/database/raw_tables
+pymantra/database/reference_tables
+
+# packaging
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# installation logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# unit test
+.coverage
+coverage.xml
+.pytest_cache
+
+# Sphinx documentation
+docs/_build/
+docs/_static/
+docs/_templates
+
+# coverage
+coverage/
+
+# environment file
+.env
+
+*.db

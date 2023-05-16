@@ -1,0 +1,55 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  tests:
+    # TODO: run unit tests on other platforms too?
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-major-version: [3]
+        # python-minor-version: [8, 9, 10, 11]
+        python-minor-version: [10]
+
+    env:
+      python-version: ${{ format('{0}.{1}', matrix.python-major-version, matrix.python-minor-version) }}
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Install python ${{ env.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ env.python-version }}
+
+      - name: Install package
+        run: |
+          pip install Cython
+          pip install .[dev]
+          python setup.py build_ext --inplace
+
+
+      - name: Run unit tests
+        if: ${{ matrix.python-minor-version != 10 }}
+        run: python -m pytest
+
+      - name: Run unit tests with coverage
+        # => 3.10 is currently our "major" version
+        if: ${{ matrix.python-minor-version == 10 }}
+        run: python -m pytest --cov app
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3

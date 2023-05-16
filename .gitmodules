@@ -1,0 +1,3 @@
+[submodule "boost_header"]
+	path = pymantra/network/enrichment/boost
+	url = https://github.com/LipiTUM/mantra_boost_header
