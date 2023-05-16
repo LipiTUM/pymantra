@@ -3,7 +3,7 @@
 ![Linting](https://github.com/lipitum/pymantra/actions/workflows/linting.yaml/badge.svg)
 ![Tests](https://github.com/lipitum/pymantra/actions/workflows/run_tests.yaml/badge.svg)
 [![Documentation](https://readthedocs.org/projects/pymantra/badge/?version=latest)](https://pymantra.readthedocs.io)
-![Coverage](https://codecov.io/gh/pymantra/branch/master/graph/badge.svg)
+[![Coverage](https://codecov.io/gh/LipiTUM/pymantra/branch/main/graph/badge.svg)](https://app.codecov.io/gh/LipiTUM/pymantra)
 
 # Metabolomics-centred graph-based multi-omics integration
 

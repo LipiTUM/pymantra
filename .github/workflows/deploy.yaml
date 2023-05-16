@@ -55,7 +55,7 @@ jobs:
         uses: pypa/cibuildwheel@v2.11.4
         env:
           CIBW_BUILD: ${{ matrix.python-version[1] }}-${{ matrix.os[1] }}*
-          CIBW_ARCHS: matrix.os[2]
+          CIBW_ARCHS: ${{ matrix.os[2] }}
 
       - name: Wheelhouse
         uses: actions/upload-artifact@v3
@@ -81,17 +81,16 @@ jobs:
         run: |
           pip install gdown
           gdown --folder https://drive.google.com/drive/folders/1sWTHWRqzglWOjTMwNa_aqkKT__Y7Snmq?usp=sharing
-          mv package/chebi.db pymantra/namemapping/ChEBI/
-          mv package/hmdb.db pymantra/namemapping/HMDB/
-          mv package/mantra.db pymantra/namemapping/mantra_db/
-          mv package/reactome.db pymantra/namemapping/Reactome/
-          rm -r package
+          mv ./package/chebi.db ./pymantra/namemapping/ChEBI/
+          mv ./package/hmdb.db ./pymantra/namemapping/HMDB/
+          mv ./package/mantra.db ./pymantra/namemapping/mantra_db/
+          mv ./package/reactome.db ./pymantra/namemapping/Reactome/
+          rm -r ./package
 
       - name: Build sdist
         run: |
           pip install --upgrade wheel setuptools
           python setup.py sdist
-          python setup.py bdist_wheel
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
