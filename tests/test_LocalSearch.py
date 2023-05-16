@@ -117,8 +117,6 @@ class TestLocalSearch:
                 edge_type="reaction_reaction", data={'x': 0, 'y': 0}
             )
 
-        expected_solutions = [{"b", "c", "d"}, {"a", "b", "c", "d"}]
-
         mlso = MetaboliteLocalSearch(
             network=reaction_graph, temp=20, delta_min=1e-10,
             l_min=3, l_max=5, max_iter=2, is_reaction_graph=True,
