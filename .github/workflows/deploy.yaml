@@ -35,8 +35,8 @@ jobs:
       - name: Install openmp
         if: startsWith(matrix.os[0], 'macos')
         run: |
-          brew install llvm
-          brew install libomp
+          brew install gcc
+          export CC='gcc-13'
 
       - name: Install python
         uses: actions/setup-python@v3
@@ -53,7 +53,7 @@ jobs:
           CIBW_ARCHS_MACOS: "x86_64 arm64"
           CIBW_ARCHS_LINUX: "x86_64 i686"
           # TODO: add in ARM64 support for windows once fully supported
-          CIBW_ARCHS_WINDOWS: "x86_64 x86"
+          CIBW_ARCHS_WINDOWS: "AMD64 x86"
           MACOSX_DEPLOYMENT_TARGET: "10.14"
         run: cibuildwheel --output-dir wheelhouse
 
