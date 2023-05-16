@@ -1,7 +1,3 @@
-# this workflow is partially adapted from the cibuildwheel repository
-# https://github.com/pypa/cibuildwheel/blob/main/examples/github-deploy.yml
-# TODO: consult https://github.com/scipy/scipy/blob/48c59f71d998ea04a6b80ace07647f309734d77a/.github/workflows/wheels.yml
-#       for additional insights/options
 name: Deployment
 
 on:
@@ -30,32 +26,42 @@ jobs:
           - [windows-2019, win, amd64]
 
     steps:
-      - name: Install openmp
-        if: startsWith(matrix.os[0], 'macos')
-        run: |
-          brew install llvm
-          brew install libomp
-
       - name: Checkout
         uses: actions/checkout@v3
         with:
           submodules: true
           fetch-depth: 0
 
+      - name: Install openmp
+        if: startsWith(matrix.os[0], 'macos')
+        run: |
+          brew install llvm
+          brew install libomp
+
+      - name: Install python
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version[0] }}
+
+      - name: Setup build system
+        run: pip install cibuildwheel Cython
+
       - name: Build wheel for macOS
         if: startsWith(matrix.os[0], 'macos')
-        uses: pypa/cibuildwheel@v2.11.4
+        # uses: pypa/cibuildwheel@v2.11.4
         env:
           CIBW_BUILD: ${{ matrix.python-version[1] }}-${{ matrix.os[1] }}_universal2
           CIBW_ARCHS_MACOS: x86_64 arm64
           MACOSX_DEPLOYMENT_TARGET: "10.14"
+        run: cibuildwheel --output-dir wheelhouse
 
       - name: Build wheel for Linux or Windows
         if: ${{ !startsWith(matrix.os[0], 'macos') }}
-        uses: pypa/cibuildwheel@v2.11.4
+        # uses: pypa/cibuildwheel@v2.11.4
         env:
           CIBW_BUILD: ${{ matrix.python-version[1] }}-${{ matrix.os[1] }}*
           CIBW_ARCHS: ${{ matrix.os[2] }}
+        run: cibuildwheel --output-dir wheelhouse
 
       - name: Wheelhouse
         uses: actions/upload-artifact@v3
@@ -89,7 +95,7 @@ jobs:
 
       - name: Build sdist
         run: |
-          pip install --upgrade wheel setuptools
+          pip install --upgrade wheel setuptools Cython
           python setup.py sdist
 
       - name: Upload artifact

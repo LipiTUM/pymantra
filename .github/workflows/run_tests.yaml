@@ -12,7 +12,6 @@ on:
 
 jobs:
   tests:
-    # TODO: run unit tests on other platforms too?
     runs-on: ubuntu-latest
 
     steps:
