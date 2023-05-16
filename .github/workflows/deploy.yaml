@@ -10,25 +10,27 @@ on:
 
 jobs:
   build_wheels:
-    name: Wheel building for ${{ matrix.python-version }}-${{ matrix.os[1] }}
+    name: Wheel building for ${{ matrix.python-version[1] }}-${{ matrix.os[1] }}_${{ matrix.os[2] }}
     runs-on: ${{ matrix.os[0] }}
 
     strategy:
       fail-fast: false
       matrix:
-        # python-version: [ "3.8", "3.9", "3.10", "3.11" ]
-        python-version: [ "3.8", "3.10" ]
+        python-version:
+          - [ "3.8", "cp38" ]
+          # - [ "3.9", "cp39" ]
+          - [ "3.10", "cp310" ]
+          # - [ "3.11", "cp311" ]
 
         os:
-          - [ubuntu-20.04, manylinux_x86_64]
-          - [ubuntu-20.04, manylinux_i686]
-          - [macos-11, macosx_*]
-          - [windows-2019, win_amd64]
-            # - [windows-2019, win32]
+          - [ubuntu-20.04, manylinux, x86_64]
+          - [ubuntu-20.04, manylinux, i686]
+          - [macos-11, macosx, x86_64]
+          - [windows-2019, win, amd64]
 
     steps:
       - name: Install openmp
-        if: startsWith(matrix.os[1], 'macosx')
+        if: startsWith(matrix.os[0], 'macos')
         run: |
           brew install llvm
           brew install libomp
@@ -39,17 +41,25 @@ jobs:
           submodules: true
           fetch-depth: 0
 
-      - name: Build wheel
+      - name: Build wheel for macOS
+        if: startsWith(matrix.os[0], 'macos')
         uses: pypa/cibuildwheel@v2.11.4
         env:
-          CIBW_BUILD: ${{ matrix.python-version }}-${{ matrix.os[1] }}
+          CIBW_BUILD: ${{ matrix.python-version[1] }}-${{ matrix.os[1] }}_universal2
           CIBW_ARCHS_MACOS: x86_64 arm64
           MACOSX_DEPLOYMENT_TARGET: "10.14"
+
+      - name: Build wheel for Linux or Windows
+        if: ${{ !startsWith(matrix.os[0], 'macos') }}
+        uses: pypa/cibuildwheel@v2.11.4
+        env:
+          CIBW_BUILD: ${{ matrix.python-version[1] }}-${{ matrix.os[1] }}*
+          CIBW_ARCHS: matrix.os[2]
 
       - name: Wheelhouse
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.python-version }}-${{ startsWith(matrix.os[1], 'macosx') && 'macosx' || matrix.os[1] }}
+          name: ${{ matrix.python-version[0] }}-${{ matrix.os[1] }}_${{ matrix.os[2] }}
           path: ./wheelhouse/*.whl
 
   build_sdist:
