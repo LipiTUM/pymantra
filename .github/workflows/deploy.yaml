@@ -74,6 +74,7 @@ jobs:
           mv package/hmdb.db pymantra/namemapping/HMDB/
           mv package/mantra.db pymantra/namemapping/mantra_db/
           mv package/reactome.db pymantra/namemapping/Reactome/
+          rm -r package
 
       - name: Build sdist
         run: |
