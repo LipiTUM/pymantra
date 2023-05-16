@@ -6,7 +6,7 @@ name: Deployment
 
 on:
   release:
-    types: [created]
+    types: [created, edited]
 
 jobs:
   build_wheels:
@@ -24,7 +24,7 @@ jobs:
 
         os:
           - [ubuntu-20.04, manylinux, x86_64]
-          - [ubuntu-20.04, manylinux, i686]
+          # - [ubuntu-20.04, manylinux, i686]
           - [macos-11, macosx, x86_64]
           - [windows-2019, win, amd64]
 
