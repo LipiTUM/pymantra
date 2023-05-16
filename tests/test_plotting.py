@@ -2,6 +2,7 @@ import pytest
 from string import ascii_lowercase, ascii_uppercase
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 from pymantra.datasets import example_graph
 from pymantra.plotting import (
@@ -62,51 +63,68 @@ class TestPlotting:
 
     def test_plot_directed_graph(self):
         plot_directed_graph(self.graph)
+        plt.close()
         plot_directed_graph(self.graph, formula_as_reaction_label=True)
+        plt.close()
 
     def test_plot_undirected_graph(self):
         plot_undirected_graph(self.graph)
+        plt.close()
         plot_undirected_graph(self.graph, formula_as_reaction_label=True)
+        plt.close()
 
     def test_plot_reaction_associations(self):
         plot_reaction_association(self.res, self.mo, self.corrs)
+        plt.close()
         plot_reaction_association(self.res, self.mo, self.corrs, self.groups)
+        plt.close()
         with pytest.raises(ValueError):
             plot_reaction_association(
                 self.res.T, self.mo, self.corrs, self.groups)
+            plt.close()
         with pytest.raises(ValueError):
             plot_reaction_association(
                 self.res, self.mo, self.corrs.T, self.groups)
+            plt.close()
 
         plot_correlation_differences(
             self.group_corrs, self.group_pvals, "N", "C", set_zero=True,
             cluster=True, return_differences=True
         )
+        plt.close()
         plot_correlation_differences(
             self.group_corrs, self.group_pvals, "N", "C", set_zero=True,
             cluster=True, return_differences=False
         )
+        plt.close()
         plot_correlation_differences(
             self.group_corrs, self.group_pvals, "N", "C", set_zero=False,
             cluster=False, return_differences=True, reorder=False
         )
+        plt.close()
         plot_correlation_differences(
             self.group_corrs, self.group_pvals, "N", "C", set_zero=True,
             cluster=False, return_differences=False, reorder=False
         )
+        plt.close()
         plot_correlation_differences(
             self.group_corrs, self.group_pvals, "N", "C", set_zero=False,
             cluster=False, return_differences=True, reorder=True
         )
+        plt.close()
         plot_correlation_differences(
             self.group_corrs, self.group_pvals, "N", "C", set_zero=True,
             cluster=False, return_differences=False, reorder=True
         )
+        plt.close()
 
     def test_plot_residuals(self):
         residual_violinplot(self.res, self.groups, rotate_labels=True)
+        plt.close()
         residual_violinplot(
             self.res, self.groups, pvalues=self.pvals, significance_only=True,
             drop_legend=True
         )
+        plt.close()
         residual_violinplot(self.res, self.groups, pvalues=self.unsig_pvals)
+        plt.close()

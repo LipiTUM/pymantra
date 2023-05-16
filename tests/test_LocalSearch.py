@@ -131,7 +131,7 @@ class TestLocalSearch:
         assert mlso.solution[0].subgraph in expected_solutions
 
         # multi-thread
-        mlso.run_local_search(n_threads=4, min_comp_size=5)
+        mlso.run_local_search(n_threads=2, min_comp_size=5)
         assert mlso.solution[0].subgraph in expected_solutions
 
         mlso.score_final_solution(["x", "y"])
@@ -155,7 +155,7 @@ class TestLocalSearch:
             p=1, objective_function="metabolic_reactions"
         )
         # multi-thread
-        mlso.run_local_search(n_threads=4, min_comp_size=4)
+        mlso.run_local_search(n_threads=2, min_comp_size=4)
         assert mlso.solution[0].subgraph in expected_solutions
 
     def test_repeated_search(self):

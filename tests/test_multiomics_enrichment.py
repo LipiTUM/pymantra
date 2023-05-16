@@ -63,7 +63,7 @@ def test_microbiome_enrichment():
         graph, "organism", 10., 1e-4, 5, 10, 10, 2)
 
     mmls.run_local_search(n_threads=1, min_comp_size=4)
-    mmls.run_local_search(n_threads=4, min_comp_size=4)
+    mmls.run_local_search(n_threads=2, min_comp_size=4)
 
 
 def test_gene_enrichment():
@@ -121,6 +121,6 @@ def test_gene_enrichment():
         graph, "gene", 10., 1e-4, 5, 10, 10, 2)
 
     mmls.run_repeated_local_search(5, n_threads=1, min_comp_size=4)
-    mmls.run_repeated_local_search(5, n_threads=4, min_comp_size=4)
+    mmls.run_repeated_local_search(5, n_threads=2, min_comp_size=4)
 
     mmls.plot_subnetwork(graph)

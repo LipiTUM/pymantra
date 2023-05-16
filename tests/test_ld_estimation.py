@@ -78,6 +78,6 @@ class TestLDEstimation:
             for as_pval in [False, True]:
                 models, case_res, scaled_res = per_sample_ld_estimation(
                     self.graph, self.metabolites, self.sample_groups,
-                    control_group="0", n_threads=4, compute_expl_var=expl_var,
+                    control_group="0", n_threads=2, compute_expl_var=expl_var,
                     var_as_pval=as_pval
                 )
