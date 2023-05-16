@@ -27,7 +27,7 @@ enrichment as well as reporting and plotting their results. Additionally, it
 contains utilities to perform metabolite ID mapping.
 
 ```mermaid
-flowchart TD
+flowchart LR
 
 
 subgraph in[Required Input]
@@ -80,7 +80,8 @@ style reac width:0px,height:0px
 ### Manuscript
 
 If you would like to learn more about the details of the methodology and see
-some real-world results please check out our [manuscript]().
+some real-world results please check out our 
+[manuscript](https://doi.org/10.1101/2023.05.15.540613).
 
 ## Getting Started
 
@@ -124,6 +125,34 @@ To install from source first clone the github repository including submodules
 git clone https://github.com/lipitum/pymantra.git --recursive
 ```
 
+Additionally, you need to download required database files for name mapping
+from [here](https://drive.google.com/drive/folders/1sWTHWRqzglWOjTMwNa_aqkKT__Y7Snmq?usp=sharing)
+
+On macOS and Linux we recommend to use the following from within the pymantra
+directory
+
+```shell
+pip install gdown
+gdown --folder https://drive.google.com/drive/folders/1sWTHWRqzglWOjTMwNa_aqkKT__Y7Snmq?usp=sharing
+mv package/chebi.db pymantra/namemapping/ChEBI/
+mv package/hmdb.db pymantra/namemapping/HMDB/
+mv package/mantra.db pymantra/namemapping/mantra_db/
+mv package/reactome.db pymantra/namemapping/Reactome/
+rm -r package
+```
+
+On Windows the syntax would change to (untested)
+
+```
+pip install gdown
+gdown --folder https://drive.google.com/drive/folders/1sWTHWRqzglWOjTMwNa_aqkKT__Y7Snmq?usp=sharing
+move package\chebi.db pymantra\namemapping\ChEBI\
+move package\hmdb.db pymantra\namemapping\HMDB\
+move package\mantra.db pymantra\namemapping\mantra_db\
+move package\reactome.db pymantra\namemapping\Reactome\
+rmdir /s /q package
+```
+
 Make sure you have a C++ compiler installed (recommended are gcc for
 Linux and OS X and Visual C++ for Windows). Please make sure the
 compiler matches the one, with which your python distribution was installed.
@@ -134,7 +163,7 @@ In case it is already installed on your system (with version >= 1.77) you can
 also drop the `--recursive` flag in the `git clone` call. In addition to
 installing boost from source you can also use `conda`.
 
-In addition to boost, we are use OpenMP for parallel processing. It is usually
+In addition to boost, we use OpenMP for parallel processing. It is usually
 installed with your compiler, although macOS users might have to run additional
 installation steps. Windows has currently no support for new OpenMP standards.
 If it is not possible to compile with OpenMP, parallelized options will be
@@ -217,6 +246,7 @@ If you use `pymantra` for your own work, please cite our manuscript
     author      = {K\"ohler, Nikolai and W\"urf, Vivian and Rose, Tim D and Pauling, Josch K},
     journal     = {bioRxiv},
     year        = {2023},
-    publisher  = {Cold Spring Harbor Laboratory},
+    publisher   = {Cold Spring Harbor Laboratory},
+    doi         = {https://doi.org/10.1101/2023.05.15.540613}
 }
 ```
