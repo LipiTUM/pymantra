@@ -65,7 +65,7 @@ docs = [
 # TODO: adapt
 Source = "https://www.github.com/lipitum/pymantra"
 Documentation = "https://pymantra.readthedocs.io"
-Publication = "https://www.lipitum.de"
+Publication = "https://doi.org/10.1101/2023.05.15.540613"
 
 
 [tool.flake8]
@@ -82,7 +82,10 @@ data_file = "coverage/coverage.report"
 omit = [
     "*/__init__.py",
     "pymantra/network/exceptions.py",
-    "pymantra/network/io_estimation.py"
+    "pymantra/network/io_estimation.py",
+    # namemapping is excluded due to the high bandwidth
+    # => we only test it locally
+    "pymantra/namemapping/*"
 ]
 
 [tool.coverage.html]
