@@ -23,7 +23,7 @@ jobs:
           - [ubuntu-20.04, manylinux, x86_64]
           # - [ubuntu-20.04, manylinux, i686]
           - [macos-11, macosx, x86_64]
-          - [windows-2019, win, amd64]
+          - [windows-2019, win, AMD64]
 
     steps:
       - name: Checkout
@@ -46,27 +46,21 @@ jobs:
       - name: Setup build system
         run: pip install cibuildwheel Cython
 
-      - name: Build wheel for macOS
-        if: startsWith(matrix.os[0], 'macos')
-        # uses: pypa/cibuildwheel@v2.11.4
-        env:
-          CIBW_BUILD: ${{ matrix.python-version[1] }}-${{ matrix.os[1] }}_universal2
-          CIBW_ARCHS_MACOS: x86_64 arm64
-          MACOSX_DEPLOYMENT_TARGET: "10.14"
-        run: cibuildwheel --output-dir wheelhouse
-
-      - name: Build wheel for Linux or Windows
-        if: ${{ !startsWith(matrix.os[0], 'macos') }}
+      - name: Build wheel
         # uses: pypa/cibuildwheel@v2.11.4
         env:
           CIBW_BUILD: ${{ matrix.python-version[1] }}-${{ matrix.os[1] }}*
-          CIBW_ARCHS: ${{ matrix.os[2] }}
+          CIBW_ARCHS_MACOS: "x86_64 arm64"
+          CIBW_ARCHS_LINUX: "x86_64 i686"
+          # TODO: add in ARM64 support for windows once fully supported
+          CIBW_ARCHS_WINDOWS: "x86_64 x86"
+          MACOSX_DEPLOYMENT_TARGET: "10.14"
         run: cibuildwheel --output-dir wheelhouse
 
       - name: Wheelhouse
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.python-version[0] }}-${{ matrix.os[1] }}_${{ matrix.os[2] }}
+          name: ${{ matrix.python-version[0] }}-${{ matrix.os[1] }}
           path: ./wheelhouse/*.whl
 
   build_sdist:
