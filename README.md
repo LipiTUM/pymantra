@@ -1,8 +1,8 @@
-![PyPI](https://img.shields.io/pypi/v/pymantra)
+[![PyPI](https://img.shields.io/pypi/v/pymantra)](https://pypi.org/project/pymantra/)
 ![License](https://img.shields.io/pypi/l/pymantra)
 ![Linting](https://github.com/lipitum/pymantra/actions/workflows/linting.yaml/badge.svg)
 ![Tests](https://github.com/lipitum/pymantra/actions/workflows/run_tests.yaml/badge.svg)
-![Documentation](https://readthedocs.org/projects/pymantra/badge/?version=latest)
+[![Documentation](https://readthedocs.org/projects/pymantra/badge/?version=latest)](https://pymantra.readthedocs.io)
 ![Coverage](https://codecov.io/gh/pymantra/branch/master/graph/badge.svg)
 
 # Metabolomics-centred graph-based multi-omics integration
