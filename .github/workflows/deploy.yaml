@@ -55,6 +55,7 @@ jobs:
           # TODO: add in ARM64 support for windows once fully supported
           CIBW_ARCHS_WINDOWS: "AMD64 x86"
           MACOSX_DEPLOYMENT_TARGET: "10.14"
+          GITHUB_ACTION: "true"
         run: cibuildwheel --output-dir wheelhouse
 
       - name: Wheelhouse

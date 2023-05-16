@@ -10,7 +10,11 @@ from Cython.Build import cythonize
 
 
 base = pathlib.Path(__file__).parent.resolve()
-compiler = get_config_vars()["CXX"].split(" ")[0]
+try:
+    compiler = get_config_vars()["CXX"].split(" ")[0]
+except KeyError:
+    # not sure why this happens
+    compiler = "msvc"
 BASE_FLAGS = ["-Os", "-std=c++17"]
 
 
@@ -160,15 +164,19 @@ def boost_test(include_dir, lib_dir):
 
 
 def build_with_openmp():
-    compile_command = get_config_vars()["CXX"]
+    warning = "Failed to compile with OpenMP. Proceeding without " \
+              "parallelized implementations."
+    try:
+        compile_command = get_config_vars()["CXX"]
+    except KeyError:
+        warnings.warn(warning)
+        return False
 
     compile_call = compile_command.split(" ") + BASE_FLAGS + OMP_FLAGS
     compile_call.append(str(base / "pymantra" / "openmp_available.cpp"))
     test_command = "openmp_test"
     compile_call += OMP_LINKER + ["-o", test_command]
 
-    warning = "Failed to compile with OpenMP. Proceeding without " \
-              "parallelized implementations."
     return _run_compile_test(compile_call, test_command, warning, True)
 
 
@@ -215,7 +223,10 @@ if boost_include is None:
     else:
         boost_include, _ = find_boost(
             ignore_conda=conda_idx is not None)
-boost_test(boost_include, boost_lib)
+if not (osys == "windows" and os.environ.get("GITHUB_ACTION") == "true"):
+    # this avoids having to manually call the compiler in a github action
+    boost_test(boost_include, boost_lib)
+
 
 if osys == "windows":
     warnings.warn(
