@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pymantra"
-version = "0.0.0beta1"
+version = "1.0.0"
 license = {text = "AGPLv3"}
 description = "Reaction-Centred Metabolic Network Analysis"
 readme = "README.md"
@@ -62,7 +62,6 @@ docs = [
 
 
 [project.urls]
-# TODO: adapt
 Source = "https://www.github.com/lipitum/pymantra"
 Documentation = "https://pymantra.readthedocs.io"
 Publication = "https://doi.org/10.1101/2023.05.15.540613"
@@ -78,16 +77,20 @@ testpaths = ["tests"]
 
 [tool.coverage.run]
 source = ["pymantra"]
-data_file = "coverage/coverage.report"
 omit = [
     "*/__init__.py",
     "pymantra/network/exceptions.py",
     "pymantra/network/io_estimation.py",
     # namemapping is excluded due to the high bandwidth
     # => we only test it locally
-    "pymantra/namemapping/*"
+    "pymantra/namemapping/*",
+    "pymantra/database/query.py"
 ]
+
+[tool.coverage.xml]
+output = "coverage/coverage.xml"
 
 [tool.coverage.html]
 show_contexts = true
 directory = "coverage/html"
+

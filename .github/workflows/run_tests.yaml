@@ -34,7 +34,10 @@ jobs:
           cp .env.template .env
 
       - name: Run unit tests with coverage
-        run: coverage run -m pytest
+        run: python -m pytest --cov-report=xml --cov=pymantra
 
       - name: Upload coverage
         uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV }}
+          files: ./coverage/coverage.xml
