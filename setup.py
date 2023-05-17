@@ -108,7 +108,11 @@ def _run_compile_test(call, exec_name, err_message, raise_warning):
 
 
 def boost_test(include_dir, lib_dir):
-    base_call = get_config_vars()["CXX"].split(" ") + BASE_FLAGS
+    try:
+        base_call = get_config_vars()["CXX"].split(" ") + BASE_FLAGS
+    except KeyError:
+        warnings.warn("Compiler not found. Unable to check boost location.")
+        return
 
     if include_dir is not None:
         if compiler == "msvc":
