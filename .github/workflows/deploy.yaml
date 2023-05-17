@@ -38,31 +38,21 @@ jobs:
           brew install gcc
           export CC='gcc-13'
 
-      - name: Install python
-        uses: actions/setup-python@v3
-        with:
-          python-version: ${{ matrix.python-version[0] }}
-
-      - name: Setup build system
-        run: pip install cibuildwheel Cython
-
       - name: Build wheel
-        # uses: pypa/cibuildwheel@v2.11.4
+        uses: pypa/cibuildwheel@v2.12.3
         env:
+          CIBW_BEFORE_BUILD: pip install Cython
           CIBW_BUILD: ${{ matrix.python-version[1] }}-${{ matrix.os[1] }}*
           CIBW_ARCHS_MACOS: "x86_64 arm64"
           CIBW_ARCHS_LINUX: "x86_64 i686"
           # TODO: add in ARM64 support for windows once fully supported
           CIBW_ARCHS_WINDOWS: "AMD64 x86"
           MACOSX_DEPLOYMENT_TARGET: "10.14"
-          GITHUB_ACTION: "true"
-        run: cibuildwheel --output-dir wheelhouse
 
       - name: Wheelhouse
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.python-version[0] }}-${{ matrix.os[1] }}
-          path: ./wheelhouse/*.whl
+          path: wheelhouse/*.whl
 
   build_sdist:
     name: Build source distribution
@@ -101,19 +91,15 @@ jobs:
   upload_pypi:
     needs: [build_wheels, build_sdist]
     runs-on: ubuntu-latest
-    environment:
-      name: pypi
-      url: https://pypi.org/p/pymantra
-    permissions:
-      id-token: write
+
     steps:
       - uses: actions/download-artifact@v3
         with:
-          # unpacks default artifact into dist/
-          # if `name: artifact` is omitted, the action will create extra parent dir
           name: artifact
           path: dist
 
       - uses: pypa/gh-action-pypi-publish@v1.5.0
         with:
           verbose: true
+          username: __token__
+          password: ${{ secrets.pypi_token }}
