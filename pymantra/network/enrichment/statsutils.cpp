@@ -29,12 +29,11 @@ using boost::math::cdf;
 using boost::math::ibeta;
 using boost::math::students_t;
 using boost::math::statistics::two_sample_t_test;
-using boost::math::isnan;
 
 
 // this is a helper function to avoid MSVC weird ambiguous overload error
 bool isnan_(double x) {
-   return isnan<double>(x);
+   return boost::math::isnan(x);
 }
 
 
