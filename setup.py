@@ -240,13 +240,13 @@ if osys == "windows":
     if compiler == "msvc":
         # TODO: reset once figure out how to use openmp with standards < 2
         # OPENMP_FLAG = ["/openmp", "/Os", "/std:c++17"]
-        FLAGS = ["/std:c++17", "/Wno-narrowing"]
+        FLAGS = ["/std:c++17"]
         LINKER = None
     elif compiler.startswith("mingw"):
         # TODO: reset once figure out how to use openmp with standards < 2
         # OPENMP_FLAG = ["-fopenmp", "-Os", "-std=c++17"]
         # OPENMP_LINK = ["-fopenmp"]
-        FLAGS = ["-std:c++17", "-Wno-narrowing"]
+        FLAGS = ["-std:c++17"]
         LINKER = None
     else:
         raise ValueError(

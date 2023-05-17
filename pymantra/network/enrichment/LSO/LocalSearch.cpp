@@ -231,7 +231,8 @@ vertex_subgraph LocalSearch::random_walk_subgraph(vertex_index_t vertex, size_t 
     else target_reactions = subgraph_size;
 
     // subgraph vertex set
-    vertex_subgraph subgraph{vertex};
+    vertex_subgraph subgraph;
+	subgraph.insert(vertex);
     if (graph[vertex].type == "reaction") ++n_reactions;
     else ++n_non_reactions;
 
