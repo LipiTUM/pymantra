@@ -21,12 +21,16 @@ class TestAPIGenerator:
         gen = APINetworkGenerator("http://127.0.0.1:8084")
         __test__ = True
     except ConnectionError:
-        warnings.warn(
-            "mantrAPI service not running or invalid credentials, skipping "
-            "API query tests"
-        )
-        # avoiding tests to crash and exit immediately
-        __test__ = False
+        try:
+            gen = APINetworkGenerator()
+            __test__ = True
+        except ConnectionError:
+            warnings.warn(
+                "mantrAPI service not running or invalid credentials, "
+                "skipping API query tests"
+            )
+            # avoiding tests to crash and exit immediately
+            __test__ = False
 
     sub_organisms = {'hsa'}
     sub_genes = {'G6PDH', 'PGLS'}
