@@ -32,8 +32,9 @@ using boost::math::statistics::two_sample_t_test;
 using boost::math::isnan;
 
 
+// this is a helper function to avoid MSVC weird ambiguous overload error
 bool isnan_(double x) {
-   return isnan(x);
+   return isnan<double>(x);
 }
 
 
@@ -41,7 +42,7 @@ vector<double> check_nan_safe(vector<double> &x) {
     vector<double> y;
     unsigned i;
     for (i = 0; i < x.size(); i++) {
-        if (!isnan(x[i]))
+        if (!isnan_(x[i]))
             y.push_back(x[i]);
     }
     if (y.empty()) {
@@ -137,7 +138,7 @@ vector<double> norm_cdf(vector<double>& x) {
 
 double norm_cdf(double z) {
     normal norm_dist;
-    if (isnan(z))
+    if (isnan_(z))
         return 1.;
     return cdf(norm_dist, z);
 }
@@ -161,7 +162,7 @@ pair<bool, vector<vector<bool>>> get_nan_masks(vector<vector<double>>& x) {
     unsigned i, j;
     for (i = 0; i < x.size(); i++) {
         for (j = 0; j < x[i].size(); j++) {
-            isna = isnan(x[i][j]);
+            isna = isnan_(x[i][j]);
             nans[i][j] = isna;
             if (isna) contains_nan = true;
         }
@@ -226,7 +227,7 @@ double spearman_pvalue(double coeff, unsigned n) {
         return NAN;
     students_t dist(df);
     // two-sided p-value
-    if (isnan(t))
+    if (isnan_(t))
         return NAN;
     return cdf(dist, -abs(t)) * 2;
 }
@@ -238,7 +239,7 @@ pair<double, double> spearmans_rank(vector<double> &x, vector<double> &y) {
     unsigned i;
 
     for (i = 0; i < x.size(); i++) {
-        if (!(isnan(x[i]) | isnan(y[i]))) {
+        if (!(isnan_(x[i]) | isnan_(y[i]))) {
             xclean.push_back(x[i]);
             yclean.push_back(y[i]);
         }
