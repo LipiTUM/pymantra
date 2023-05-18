@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. |PyPI| |License| |Documentation| |Codecov| |Downloads|
+|PyPI| |License| |Docs| |Codecov| |Downloads|
 
 pymantra - Reaction-centered Metabolic Network Analysis
 =======================================================================
@@ -104,9 +104,9 @@ Indices and tables
     :alt: Downloads
 
 .. |Docs|  image:: https://img.shields.io/readthedocs/pymantra
-    :target: https://pymantra.readthedocs.io/en/stable
+    :target: https://pymantra.readthedocs.io/en/latest
     :alt: Documentation
 
-.. |Codecov| image:: https://codecov.io/gh/pymantra/branch/master/graph/badge.svg
+.. |Codecov| image:: https://codecov.io/gh/lipitum/pymantra/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/pymantra
     :alt: Coverage
