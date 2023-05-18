@@ -230,4 +230,3 @@ class TestAPIGenerator:
         except ConnectionError:
             # happens if API is not available locally
             pass
-
