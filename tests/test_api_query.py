@@ -212,7 +212,7 @@ class TestAPIGenerator:
     def test_exceptions(self):
         # initialisation
         with pytest.raises(ValueError):
-            APINetworkGenerator("exbio.wzw.tum.de/test_fail")
+            APINetworkGenerator("exbio.wzw.tum.de/pymantradb/test_fail")
         with pytest.raises(ConnectionError):
             APINetworkGenerator("127.0.0.1:7777")
         # invalid/incorrect queries

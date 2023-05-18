@@ -12,5 +12,5 @@ def test_reduce_reaction_nodes():
 
 def test_env_reading():
     read_env(pathlib.Path(__file__).parent.parent.absolute() / ".env.template")
-    assert os.getenv("NEO4J_USER") == "neo4j_user"
+    assert os.getenv("NEO4J_USER") == "neo4j"
     assert os.getenv("NEO4J_PASSWORD") == "123"
