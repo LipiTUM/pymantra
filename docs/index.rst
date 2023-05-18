@@ -108,5 +108,5 @@ Indices and tables
     :alt: Documentation
 
 .. |Codecov| image:: https://codecov.io/gh/lipitum/pymantra/branch/main/graph/badge.svg
-    :target: https://codecov.io/gh/pymantra
+    :target: https://codecov.io/gh/lipitum/pymantra
     :alt: Coverage
