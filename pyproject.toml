@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pymantra"
-version = "1.0.0"
+version = "1.0.1"
 license = {text = "AGPLv3"}
 description = "Reaction-Centred Metabolic Network Analysis"
 readme = "README.md"
