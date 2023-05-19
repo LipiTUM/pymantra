@@ -42,13 +42,11 @@ jobs:
         with:
           python-version: ${{ matrix.python-version[0] }}
 
-      # TODO: put this into a python script such that it can be downloaded
-      #       and executed across all platforms
       - name: Fetch database files
         run: |
           pip install gdown
           gdown --folder https://drive.google.com/drive/folders/1AJvqr4nW5Fn5Vjwwx5sO7RgXB1yZKyKD?usp=share_link
-          python -c "import os; os.rename(os.path.join('copy_file', 'copy_db_files.py'), 'copy_db_files.py')"
+          python -c "import os; os.rename(os.path.join('copy_file', 'copy_db_files.py'), 'copy_db_files.py'); os.rmdir('copy_file')"
           python copy_db_files.py
 
       - name: Build wheel
