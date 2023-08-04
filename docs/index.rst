@@ -1,12 +1,7 @@
-.. MANTRA's documentation master file, created by
-   sphinx-quickstart on Thu Apr  7 16:23:34 2022.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 |PyPI| |License| |Docs| |Codecov| |Downloads|
 
 pymantra - Reaction-centered Metabolic Network Analysis
-=======================================================================
+=======================================================
 
 .. image:: _static/Figure1.svg
    :width: 80%
@@ -75,20 +70,6 @@ The full documentation is found in the :doc:`API section <api/index>`
    citation
    license
    GitHub <https://github.com/lipitum/pymantra>
-
-
-References
-==========
-.. bibliography::
-    :cited:
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/pymantra.svg
