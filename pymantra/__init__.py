@@ -19,6 +19,10 @@ from pymantra.network import (
     NodeTypeError
 )
 from pymantra.network.enrichment.spearman import multi_threading
+from pymantra.datasets import (
+    example_graph, example_multiomics_enrichment_data,
+    example_metabolome_enrichment_data
+)
 
 
 if not multi_threading():
@@ -44,7 +48,11 @@ __all__ = [
     "add_gene_associations",
     "confounder_correction",
     # exceptions
-    "NodeTypeError"
+    "NodeTypeError",
+    # example data
+    "example_graph",
+    "example_metabolome_enrichment_data",
+    "example_multiomics_enrichment_data"
 ]
 
 

@@ -277,8 +277,9 @@ def _compute_model(
         computation
     norm_multiple : bool, default False
         norm multivariable residuals
-    outlier_threshold : float, default None
-        Cook's distance threshold for outlier detection
+    outlier_threshold : float | bool, default None
+        Cook's distance threshold for outlier detection. If `False`, no outlier
+        removal will be performed
     r2_threshold : float, default 0.5
         Minimum :math:`R^2` the model needs to meet to not be
         discarded. If all models should be taken set to None.
@@ -302,13 +303,16 @@ def _compute_model(
     # e.g model.intercept_ + X @ model.coef_.T for a linear regression
     y_hat = model.predict(X)
     # cook's distance for outlier detection
-    cook_dist, df = _cooks_distance(Y, y_hat, X, p)
-    if outlier_threshold is None:
-        # TODO: what's the better threshold here?
-        # outlier_threshold = 4 / X.shape[0]
-        outlier_threshold = f.sf(cook_dist, X.shape[1], df)
-    outliers = cook_dist > outlier_threshold
-    has_outliers = np.any(outliers)
+    if isinstance(outlier_threshold, bool) and not outlier_threshold:
+        has_outliers = False
+    else:
+        cook_dist, df = _cooks_distance(Y, y_hat, X, p)
+        if outlier_threshold is None:
+            # TODO: what's the better threshold here?
+            # outlier_threshold = 4 / X.shape[0]
+            outlier_threshold = f.sf(cook_dist, X.shape[1], df)
+        outliers = cook_dist > outlier_threshold
+        has_outliers = np.any(outliers)
     if has_outliers:
         xn = X[~outliers]
         yn = Y[~outliers]
