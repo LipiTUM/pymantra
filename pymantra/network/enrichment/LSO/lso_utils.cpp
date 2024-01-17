@@ -1,38 +1,32 @@
 #include "lso_utils.hpp"
 
+#include <utility>
 
-BestAction::BestAction() {
-    this->score = -1.;
-    this->action = initial_seed;
-}
 
-BestAction::BestAction(double score, Action action, unsigned n_reactions) {
-    this->score = score;
-    this->action = action;
-    this->n_reactions = n_reactions;
-}
+BestAction::BestAction()
+	: score(-1), action(initial_seed)
+{}
 
-BestAction::BestAction(double score, vertex_subgraph solution, Action action) {
-    this->score = score;
-    this->solution = std::move(solution);
-    this->action = action;
-}
+BestAction::BestAction(double score, Action action, unsigned n_reactions)
+	: score(score), action(action), n_reactions(n_reactions)
+{}
 
-BestAction::BestAction(double score, Action action, int v1, int v2, size_t n_reactions) {
-    this->score = score;
-    this->action = action;
+BestAction::BestAction(double score, vertex_subgraph solution, Action action)
+	: score(score), solution(std::move(solution)), action(action)
+{}
+
+BestAction::BestAction(double score, Action action, int v1, int v2, size_t n_reactions)
+	: score(score), action(action), n_reactions(n_reactions)
+{
     this->vertex_affected[0] = v1;
     this->vertex_affected[1] = v2;
-    this->n_reactions = n_reactions;
 }
 
-BestAction::BestAction(double score, vertex_subgraph solution, Action action, int v1, int v2, size_t n_reactions) {
-    this->score = score;
-    this->solution = std::move(solution);
-    this->action = action;
+BestAction::BestAction(double score, vertex_subgraph solution, Action action, int v1, int v2, size_t n_reactions)
+	: score(score), solution(std::move(solution)), action(action), n_reactions(n_reactions)
+{
     this->vertex_affected[0] = v1;
     this->vertex_affected[1] = v2;
-    this->n_reactions = n_reactions;
 }
 
 bool BestAction::operator==(const BestAction &a) const {

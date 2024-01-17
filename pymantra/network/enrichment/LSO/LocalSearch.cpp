@@ -12,6 +12,7 @@
 #include <boost/algorithm/cxx11/all_of.hpp>
 #include <boost/algorithm/cxx11/any_of.hpp>
 #include <boost/format.hpp>
+
 #include "LocalSearch.hpp"
 #include "../Exceptions.hpp"
 #include "../pyutils.hpp"
