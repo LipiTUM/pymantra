@@ -4,6 +4,7 @@
 ![Tests](https://github.com/lipitum/pymantra/actions/workflows/run_tests.yaml/badge.svg)
 [![Documentation](https://readthedocs.org/projects/pymantra/badge/?version=latest)](https://pymantra.readthedocs.io)
 [![Coverage](https://codecov.io/gh/LipiTUM/pymantra/branch/main/graph/badge.svg)](https://app.codecov.io/gh/LipiTUM/pymantra)
+[![DOI](https://zenodo.org/badge/641486512.svg)](https://doi.org/10.5281/zenodo.13142371)
 
 # Metabolomics-centred graph-based multi-omics integration
 
